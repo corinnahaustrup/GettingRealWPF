@@ -11,7 +11,7 @@
             HorizontalAlignment="Left" Margin="66,304,0,0" VerticalAlignment="Top"/>
         <TextBox
             x:Name="NavnInputBox"
-            HorizontalAlignment="Left" Margin="110,308,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" TextChanged="NavnInputBox_TextChanged_1"/>
+            HorizontalAlignment="Left" Margin="110,312,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" TextChanged="NavnInputBox_TextChanged_1"/>
 
 
 
@@ -22,7 +22,7 @@
             HorizontalAlignment="Left" Margin="55,344,0,0" VerticalAlignment="Top"/>
         <TextBox 
            x:Name="TelefonInputBox" 
-           HorizontalAlignment="Left" Margin="110,348,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+           HorizontalAlignment="Left" Margin="109,348,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
 
 
 

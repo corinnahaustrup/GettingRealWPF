@@ -20,6 +20,7 @@ namespace GettingRealWPF.Models
             this.dateTime = dateTime;
             this.status = status;
         }
+
         public string GetStatus()
         {
             return status; 
@@ -27,8 +28,8 @@ namespace GettingRealWPF.Models
 
         public bool Validate()
         {
-            //d>D bookingtid er i fremtiden ikke nu,
             //!stri... status er ikke null eller tom
+            //tjekker om bookingtid er i fremtiden og status er udfyldt
             return dateTime > DateTime.Now && !string.IsNullOrEmpty(status);
         }
 
@@ -41,6 +42,7 @@ namespace GettingRealWPF.Models
             }
             return false;
         }
+   
        
     }
 }

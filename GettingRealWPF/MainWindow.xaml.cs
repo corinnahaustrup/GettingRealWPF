@@ -25,5 +25,15 @@ namespace GettingRealWPF
         {
 
         }
+
+        private void NavnInputBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
+
+        private void NavnInputBox_TextChanged_1(object sender, TextChangedEventArgs e)
+        {
+
+        }
     }
 }

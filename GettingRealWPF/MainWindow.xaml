@@ -1,19 +1,30 @@
 ﻿<Window x:Class="GettingRealWPF.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:GettingRealWPF"
-        mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
-        </Grid.ColumnDefinitions>
-        <TextBox HorizontalAlignment="Left" Margin="167,67,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120" TextChanged="TextBox_TextChanged"/>
-        <TextBox HorizontalAlignment="Left" Margin="167,108,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
-        <Label Content="Label" HorizontalAlignment="Left" Margin="108,63,0,0" VerticalAlignment="Top"/>
-        <Label Content="Label" HorizontalAlignment="Left" Margin="108,108,0,0" VerticalAlignment="Top"/>
+        
+        <!-- Binding between NavnTextBox and NavnLabel -->
+        <Label
+            Content="{Binding ElementName=NavnInputBox, Path=Text}"
+            ContentStringFormat="Navn: {0}"
+            HorizontalAlignment="Left" Margin="66,304,0,0" VerticalAlignment="Top"/>
+        <TextBox
+            x:Name="NavnInputBox"
+            HorizontalAlignment="Left" Margin="110,312,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" TextChanged="NavnInputBox_TextChanged_1"/>
+
+
+
+        <!-- Binding between TelefonTextBox and TelefonLabel -->
+        <Label 
+            Content="{Binding ElementName=TelefonInputBox, Path=Text}"
+            ContentStringFormat="Telefon: {0}" 
+            HorizontalAlignment="Left" Margin="55,344,0,0" VerticalAlignment="Top"/>
+        <TextBox 
+           x:Name="TelefonInputBox" 
+           HorizontalAlignment="Left" Margin="109,348,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+
+
 
     </Grid>
 </Window>

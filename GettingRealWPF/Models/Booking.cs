@@ -20,7 +20,19 @@ namespace GettingRealWPF.Models
             this.dateTime = dateTime;
             this.status = status;
         }
-
+        public bool Create()
+        {
+            return Validate();
+        }
+        public bool Cancel()
+        { 
+        if (status !="Cancelled")
+            {
+                status = "Cancelled";
+                return true;
+            }
+            return false;
+        }
         public string GetStatus()
         {
             return status; 
@@ -42,7 +54,7 @@ namespace GettingRealWPF.Models
             }
             return false;
         }
-   
+      
        
     }
 }

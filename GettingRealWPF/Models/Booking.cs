@@ -26,7 +26,7 @@ namespace GettingRealWPF.Models
         }
         public bool Cancel()
         { 
-        if (status !="Cancelled")
+        if (status =!
             {
                 status = "Cancelled";
                 return true;

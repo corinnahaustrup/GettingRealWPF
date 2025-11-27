@@ -24,6 +24,14 @@ namespace GettingRealWPF.Models
         {
             return status; 
         }
+
+        public bool Validate()
+        {
+            //d>D bookingtid er i fremtiden ikke nu,
+            //!stri... status er ikke null eller tom
+            return dateTime > DateTime.Now && !string.IsNullOrEmpty(status);
+        }
+
         public bool Confirm()
         {
             if (Validate())
@@ -31,6 +39,8 @@ namespace GettingRealWPF.Models
                 status = "Confirmed";
                 return true;
             }
+            return false;
         }
+       
     }
 }

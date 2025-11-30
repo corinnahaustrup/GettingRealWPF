@@ -14,7 +14,13 @@ namespace GettingRealWPF.Models
 
         //constructor
         public Customer(int customerId, string name, int phone)
-        { }
+        {
+            //initialisere instansfelterne
+        CustomerId = customerId;
+            Name = name;
+            Phone = phone;
+        
+        }
 
     }
 }

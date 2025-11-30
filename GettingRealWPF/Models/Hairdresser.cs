@@ -14,6 +14,8 @@ namespace GettingRealWPF.Models
         //consttrucctor
         public Hairdresser(int hairdresserId, string name)
         { 
+            HairdresserId = hairdresserId;
+            Name = name;
         }
 
     }

@@ -11,10 +11,14 @@ namespace GettingRealWPF.Models
         public int ServiceId { get; set; }
         public string Name { get; set; }
         public decimal Price { get; set; }
-        public TimeSpan DurationMinutes { get; set; }
+        public TimeSpan Duration { get; set; }
     //Constructors
-    public Service(int serviceId, decimal price, TimeSpan durationMinutes) 
+    public Service(int serviceId, string name, decimal price, TimeSpan duration) 
         {
+            ServiceId = serviceId;
+            Name = name;
+            Price = price;
+            Duration = duration;
         }
     }
 }

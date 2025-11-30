@@ -20,23 +20,12 @@ namespace GettingRealWPF.Models
             this.dateTime = dateTime;
             this.status = status;
         }
-        public bool Create()
-        {
-            return Validate();
-        }
-        public bool Cancel()
-        { 
-        if (status !="Cancelled")
-            {
-                status = "Cancelled";
-                return true;
-            }
-            return false;
-        }
+
         public string GetStatus()
         {
             return status; 
         }
+
 
         public bool Validate()
         {
@@ -44,6 +33,7 @@ namespace GettingRealWPF.Models
             //tjekker om bookingtid er i fremtiden og status er udfyldt
             return dateTime > DateTime.Now && !string.IsNullOrEmpty(status);
         }
+
 
         public bool Confirm()
         {
@@ -54,7 +44,17 @@ namespace GettingRealWPF.Models
             }
             return false;
         }
-      
-       
+
+        public bool Cancel()
+        {  //kan annuleres uanset status, bortset fra hvis den allerede er annulleret
+            if (status != "Cancelled")
+            {
+                status = "Cancelled";
+                return true;
+            }
+            return false; //allerede annulleret
+        }
+
+
     }
 }

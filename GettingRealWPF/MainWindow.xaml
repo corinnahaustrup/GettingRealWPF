@@ -27,20 +27,20 @@
 
         <!-- 1: Service -->
         <TextBlock Grid.Row="1" Grid.Column="0" Margin="0,8,8,0" Text="Service"/>
-        <ComboBox Grid.Row="1" Grid.Column="1" Margin="0,8,0,0" Width="200"
-                  x:Name="ServiceComboBox"/>
+        <ComboBox Grid.Row="1" Margin="62,5,506,1" Width="200"
+                  x:Name="ServiceComboBox" Grid.ColumnSpan="2"/>
 
         <!-- 2: Frisør -->
         <TextBlock Grid.Row="2" Grid.Column="0" Margin="0,8,8,0" Text="Frisør"/>
-        <ComboBox Grid.Row="2" Grid.Column="1" Margin="0,8,0,0" Width="200"
-                  x:Name="HairdresserComboBox"/>
+        <ComboBox Grid.Row="2" Margin="62,2,506,3" Width="200"
+                  x:Name="HairdresserComboBox" Grid.ColumnSpan="2"/>
 
         <!-- 3: Dato/Tid  + time slots-->
         <TextBlock Grid.Row="3" Grid.Column="0" Margin="0,8,8,0" Text="Dato/tid"/>
         <StackPanel Grid.Row="3" Grid.Column="1" Margin="0,8,0,0" Orientation="Horizontal" >
             <DatePicker x:Name="DatoPicker" Width="140"
                    SelectedDateChanged="DatoPicker_SelectedDateChanged"/>
-            <ComboBox x:Name="AvailableTimesComboBox" Width="100" Margin="8,0,0,0"/>
+            <ComboBox x:Name="AvailableTimesComboBox" Width="100"/>
         </StackPanel>
 
         <!-- 5: Navn (binding) -->
@@ -62,7 +62,7 @@
         <Button Grid.Row="7" Grid.ColumnSpan="2" Margin="0,12,0,0"
                 Content="Bekræft" Width="120" HorizontalAlignment="Right" IsDefault="True"
                 x:Name="BekraeftButton"/>
-        <TextBox x:Name="TidInputBox" HorizontalContentAlignment="Center" RenderTransformOrigin="0.509,0.589" TextChanged="TidInputBox_TextChanged" Grid.Column="1" Margin="181,10,455,168" Grid.Row="3" Grid.RowSpan="2"/>
+        <TextBox x:Name="TidInputBox" HorizontalContentAlignment="Center" RenderTransformOrigin="0.509,0.589" TextChanged="TidInputBox_TextChanged" Grid.Column="1" Margin="353,10,283,168" Grid.Row="3" Grid.RowSpan="2"/>
 
 
 

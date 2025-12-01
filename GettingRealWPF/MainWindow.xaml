@@ -3,7 +3,18 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        
+        <TextBlock 
+            Grid.Row="6"
+            FontSize="24"
+            Text="Ammari Cut's bookingsystem" />
+
+        <Grid Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
+            <TextBlock Grid.Row="6" Text=""/>
+        </Grid>
+
         <!-- Binding between NavnTextBox and NavnLabel -->
         <Label
             Content="{Binding ElementName=NavnInputBox, Path=Text}"

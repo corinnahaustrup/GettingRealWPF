@@ -5,14 +5,22 @@
     <Grid Margin="16">
         <!-- Rows: 0 Header, 1 Service, 2 Frisør, 3 Dato/Tid, 4 Spacer (*), 5 Navn, 6 Telefon, 7 Bekræft -->
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>  <!-- 0 -->
-            <RowDefinition Height="Auto"/>  <!-- 1 -->
-            <RowDefinition Height="Auto"/>  <!-- 2 -->
-            <RowDefinition Height="Auto"/>  <!-- 3 -->
-            <RowDefinition Height="*"/>     <!-- 4 -->
-            <RowDefinition Height="Auto"/>  <!-- 5 -->
-            <RowDefinition Height="Auto"/>  <!-- 6 -->
-            <RowDefinition Height="Auto"/>  <!-- 7 -->
+            <RowDefinition Height="Auto"/>
+            <!-- 0 -->
+            <RowDefinition Height="Auto"/>
+            <!-- 1 -->
+            <RowDefinition Height="Auto"/>
+            <!-- 2 -->
+            <RowDefinition Height="Auto"/>
+            <!-- 3 -->
+            <RowDefinition Height="*"/>
+            <!-- 4 -->
+            <RowDefinition Height="Auto"/>
+            <!-- 5 -->
+            <RowDefinition Height="Auto"/>
+            <!-- 6 -->
+            <RowDefinition Height="Auto"/>
+            <!-- 7 -->
         </Grid.RowDefinitions>
 
         <Grid.ColumnDefinitions>
@@ -20,7 +28,7 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
-        <!-- 0: Header -->  
+        <!-- 0: Header -->
         <TextBlock Grid.Row="0" Grid.ColumnSpan="2"
                    FontSize="24"
                    Text="Ammari Cut's bookingsystem" />
@@ -38,8 +46,7 @@
         <!-- 3: Dato/Tid -->
         <TextBlock Grid.Row="3" Grid.Column="0" Margin="0,8,8,0" Text="Dato/tid"/>
         <StackPanel Grid.Row="3" Grid.Column="1" Margin="0,8,0,0" Orientation="Horizontal" />
-        <DatePicker x:Name="DatoPicker" Width="140"/>
-        <TextBox x:Name="TidInputBox" Width="70" HorizontalContentAlignment="Center" Margin="8,0,0,0"/>
+        <DatePicker x:Name="DatoPicker" Width="140" Margin="22,10,544,168" Grid.RowSpan="2" Grid.Row="3" Grid.Column="1"/>
 
 
         <!-- 5: Navn (binding) -->
@@ -61,8 +68,9 @@
         <Button Grid.Row="7" Grid.ColumnSpan="2" Margin="0,12,0,0"
                 Content="Bekræft" Width="120" HorizontalAlignment="Right" IsDefault="True"
                 x:Name="BekraeftButton"/>
+        <TextBox x:Name="TidInputBox" HorizontalContentAlignment="Center" RenderTransformOrigin="0.509,0.589" TextChanged="TidInputBox_TextChanged" Grid.Column="1" Margin="181,10,455,168" Grid.Row="3" Grid.RowSpan="2"/>
 
-       
-        <Com
+
+
     </Grid>
 </Window>

@@ -35,5 +35,15 @@ namespace GettingRealWPF
         {
 
         }
+
+        private void TidInputBox_Copy_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
+
+        private void TidInputBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
     }
 }

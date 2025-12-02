@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -36,9 +37,10 @@ namespace GettingRealWPF.Repositories
                 //ToList() laver en ny liste (snaphot). Det er normalt det bedste valg for GetAll().
                 return services.ToList();
             }
-        
-        }
-    }
+
+        //Hent service efter id
+         
+
 
 
 }

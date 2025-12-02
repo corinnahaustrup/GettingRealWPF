@@ -8,9 +8,10 @@ using GettingRealWPF.Commands;
 
 namespace GettingRealWPF.ViewModels
 {
-    public class MainViewModel : INotifyPropertyChanged
+    public class MainViewModel : INotifyPropertyChanged //notifier UI at refresh
     {
-        public ObservableCollection<Service> Services { get; } = new();
+        //Services er i en ObservableCollection<Service> i viewmodel
+        public ObservableCollection<Service> Services { get; } = new(); 
         public ObservableCollection<Hairdresser> Hairdressers { get; } = new();
         public ObservableCollection<string> AvailableTimes { get; } = new();
 

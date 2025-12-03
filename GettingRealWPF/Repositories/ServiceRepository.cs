@@ -41,13 +41,11 @@ namespace GettingRealWPF.Repositories
         //=> går til eller betyder at vi definerer funktionen sådan
         //s.ServiceId == id er betingelsen, er s.ServiceId lig med det id der søges
         public Service? GetById(int id)
-            {
+        {
             return services.FirstOrDefault(s => s.ServiceId == id);
-            }
-    
-            }
-
-        }
+        }    
+    }
+}
 
 
 

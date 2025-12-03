@@ -18,51 +18,37 @@ namespace GettingRealWPF.Repositories
             services = new List<Service>
             {
                 new Service(1, "Hårklip", 200m, TimeSpan.FromMinutes(30)),
-                new Service(1, "Hårklip - Hår + skæg", 250m, TimeSpan.FromMinutes(30)),
-                new Service(2, "Hårklip - Barbering", 70m, TimeSpan.FromMinutes(30)),
-                new Service(3, "Hårklip - Hår + skæg + maske", 270m, TimeSpan.FromMinutes(30)),
-                new Service(2, "Hårklip - Hår + maske", 230m, TimeSpan.FromMinutes(30)),
-                new Service(2, "Hårklip - Pension/børn u12", 150m, TimeSpan.FromMinutes(30)),
-                new Service(2, "Hårklip - All in", 300m, TimeSpan.FromMinutes(30)),
-
+                new Service(2, "Hårklip - Hår + skæg", 250m, TimeSpan.FromMinutes(30)),
+                new Service(3, "Hårklip - Barbering", 70m, TimeSpan.FromMinutes(30)),
+                new Service(4, "Hårklip - Hår + skæg + maske", 270m, TimeSpan.FromMinutes(30)),
+                new Service(5, "Hårklip - Hår + maske", 230m, TimeSpan.FromMinutes(30)),
+                new Service(6, "Hårklip - Pension/børn u12", 150m, TimeSpan.FromMinutes(30)),
+                new Service(7, "Hårklip - All in", 300m, TimeSpan.FromMinutes(30)),
             };
-
         }
 
-        //Returnerer en sikker snapshot-kopi af alle services
-        public IEnumerable<Service> GetAllServices()
+        //Hent alle services 
+        public List<Service> GetAllServices()
         {
-            lock (sync)
-            {
-        //ToList() laver en ny liste (snaphot). Det er normalt det bedste valg for GetAll().
-                return services.ToList();
-            }
+            return services;
         }
 
-        //Hent service efter id. Retunerer null hvis ikke fundet.
+        //Hent en service efter id
+        //GetById(int id) leder efter servicen med det angivne serviceId
+        //Service? betyder at metoden enten returnere et service-objekt eller null
+        //FirstOrDefault finder første element i en liste som matcher betingelsen ellers default
+        //s parameternavn der repræsenterer ét element i List<Service> 
+        //=> går til eller betyder at vi definerer funktionen sådan
+        //s.ServiceId == id er betingelsen, er s.ServiceId lig med det id der søges
         public Service? GetById(int id)
-        {
-             lock (sync)
-             {
-                    return services.FirstOrDefault(s => s.ServiceId == id);
-             }
-        }
-
-        public Service Add(Service service)
-        {
-            if (service is null) throw new ArgumentNullException(nameof(service));
-
-            lock (sync)
             {
-                var nextId = services.Any() ? services.Max(s => s.ServiceId) + 1 : 1;
-                service.ServiceId = nextId;
-                services.Add(service);
-                return service;
+            return services.FirstOrDefault(s => s.ServiceId == id);
+            }
+    
             }
 
         }
 
-    }
-}
+
 
 

@@ -3,21 +3,25 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Windows.Input;
-using GettingRealWPF.Models;
 using GettingRealWPF.Commands;
+using GettingRealWPF.Models;
+using GettingRealWPF.Repositories;
 
 namespace GettingRealWPF.ViewModels
 
     //kun binding og commands
 {
-    public class MainViewModel : INotifyPropertyChanged
+    public class MainViewModel : INotifyPropertyChanged 
+                       //når værdier ændres i viewmodel på properties får UI besked
     {
-        // Lister til ComboBoxe
+    private readonly ServiceRepository serviceRepo;
+
+        //Lister til ComboBoxe
         public ObservableCollection<Service> Services { get; } = new();
         public ObservableCollection<Hairdresser> Hairdressers { get; } = new();
         public ObservableCollection<string> AvailableTimes { get; } = new();
 
-        // Backing fields
+        // Selected properties (binder til UI)
         private Service? selectedService;
         public Service? SelectedService
         {
@@ -39,7 +43,6 @@ namespace GettingRealWPF.ViewModels
             {
                 selectedHairdresser = value;
                 OnPropertyChanged(nameof(SelectedHairdresser));
-                RefreshAvailableTimes();
                 UpdateConfirmCanExecute();
             }
         }
@@ -93,20 +96,25 @@ namespace GettingRealWPF.ViewModels
             }
         }
 
+        // Command binding
         public ICommand ConfirmCommand { get; }
 
-              public MainViewModel()
+        public MainViewModel()
         {
-            // Midlertidige data (flyttes til repositories senere)
-            Services.Add(new Service(1, "Klip", 299m, TimeSpan.FromMinutes(30)));
-            Services.Add(new Service(2, "Farve", 599m, TimeSpan.FromMinutes(60)));
+            // Hent services fra repository
+            serviceRepo = new ServiceRepository();
+            foreach (var s in serviceRepo.GetAllServices())
+                Services.Add(s);
 
-            Hairdressers.Add(new Hairdresser(1, "Ammari"));
-            Hairdressers.Add(new Hairdresser(2, "Sara"));
+            // Dummy frisører
+            Hairdressers.Add(new Hairdresser(1, "Jafaar"));
+            Hairdressers.Add(new Hairdresser(2, "Jakob"));
 
+            // Standardvalg
             SelectedService = Services.FirstOrDefault();
             SelectedHairdresser = Hairdressers.FirstOrDefault();
 
+            // Command binding
             ConfirmCommand = new RelayCommand(_ => Confirm(), _ => CanConfirm());
 
             RefreshAvailableTimes();
@@ -125,7 +133,6 @@ namespace GettingRealWPF.ViewModels
             for (var start = open; start + duration <= close; start += step)
             {
                 var startDt = SelectedDate.Value.Date + start;
-                // TODO: filtrer optagede tider fra repository
                 AvailableTimes.Add(startDt.ToString("HH:mm"));
             }
 
@@ -144,7 +151,8 @@ namespace GettingRealWPF.ViewModels
 
         private void Confirm()
         {
-            // TODO: Gem booking via repository
+            // Her kan du vise en besked eller gemme booking
+            Console.WriteLine($"Booking bekræftet: {Navn} har valgt {SelectedService?.Name} hos {SelectedHairdresser?.Name} kl. {SelectedTime}");
         }
 
         private void UpdateConfirmCanExecute()

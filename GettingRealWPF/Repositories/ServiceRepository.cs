@@ -8,11 +8,10 @@ using System.Threading.Tasks;
 
 namespace GettingRealWPF.Repositories
 {
-    internal class ServiceRepository
+    public class ServiceRepository
     {
         private readonly List<Service> services;
-        //Låseobjektet
-        private readonly object sync = new();
+
         public ServiceRepository()
         {
             services = new List<Service>
@@ -27,11 +26,9 @@ namespace GettingRealWPF.Repositories
             };
         }
 
-        //Hent alle services 
-        public List<Service> GetAllServices()
-        {
-            return services;
-        }
+        //Returner alle services 
+        public List<Service> GetAllServices() => services;
+
 
         //Hent en service efter id
         //GetById(int id) leder efter servicen med det angivne serviceId
@@ -40,14 +37,13 @@ namespace GettingRealWPF.Repositories
         //s parameternavn der repræsenterer ét element i List<Service> 
         //=> går til eller betyder at vi definerer funktionen sådan
         //s.ServiceId == id er betingelsen, er s.ServiceId lig med det id der søges
-        public Service? GetById(int id)
-            {
-            return services.FirstOrDefault(s => s.ServiceId == id);
-            }
-    
-            }
+        public Service? GetById(int id) => services.FirstOrDefault(s => s.ServiceId == id);
+         
+          
 
         }
+}
+
 
 
 

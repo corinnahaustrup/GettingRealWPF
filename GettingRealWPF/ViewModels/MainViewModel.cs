@@ -17,11 +17,13 @@ namespace GettingRealWPF.ViewModels
     private readonly ServiceRepository serviceRepo;
 
         //Lister til ComboBoxe
+        //ObservableCollection<> er en liste som automatisk giver UI besked når der tilføjes/fjernes items
+        //= new() initialeserer hver liste med det samme, hvis der skal tilføjes nye items i constructoren
         public ObservableCollection<Service> Services { get; } = new();
         public ObservableCollection<Hairdresser> Hairdressers { get; } = new();
         public ObservableCollection<string> AvailableTimes { get; } = new();
 
-        // Selected properties (binder til UI)
+        //Selected properties (binder til UI)
         private Service? selectedService;
         public Service? SelectedService
         {

@@ -37,15 +37,16 @@
                   ItemsSource="{Binding Hairdressers}"
                   DisplayMemberPath="Name"
                   SelectedItem="{Binding SelectedHairdresser}"/>
+        <!-- med ItemSource vil comboboxene automatisk opdatere når noget ændres i ObserveCollection -->
 
         <!-- 3 Dato/Tid -->
         <TextBlock Grid.Row="3" Grid.Column="0" Margin="0,8,8,0" Text="Dato/tid"/>
         <StackPanel Grid.Row="3" Grid.Column="1" Orientation="Horizontal" Margin="0,8,0,0">
             <DatePicker Width="140"
                         SelectedDate="{Binding SelectedDate, Mode=TwoWay}"/>
-            <ComboBox Width="80" Margin="8,0,0,0" x:Name="DatePicker"
+            <ComboBox Width="80" Margin="8,0,0,0" x:Name="AvailableTimesComboBox"
                       ItemsSource="{Binding AvailableTimes}"
-                      SelectedItem="{Binding SelectedTime, Mode=TwoWay}" SelectionChanged="ComboBox_SelectionChanged"/>
+                      SelectedItem="{Binding SelectedTime, Mode=TwoWay}"/>
         </StackPanel>
 
         
@@ -70,5 +71,7 @@
                 Content="Bekræft"
                 
                 Command="{Binding ConfirmCommand}"/>
+        <!-- Knap er command-bound, andre kontroller er data-bound, comboboxe, datepicker, time combobox, textbox -->
+        
     </Grid>
 </Window>

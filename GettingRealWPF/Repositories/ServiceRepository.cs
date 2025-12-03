@@ -34,15 +34,35 @@ namespace GettingRealWPF.Repositories
         {
             lock (sync)
             {
-                //ToList() laver en ny liste (snaphot). Det er normalt det bedste valg for GetAll().
+        //ToList() laver en ny liste (snaphot). Det er normalt det bedste valg for GetAll().
                 return services.ToList();
             }
+        }
 
-        //Hent service efter id
-         
+        //Hent service efter id. Retunerer null hvis ikke fundet.
+        public Service? GetById(int id)
+        {
+             lock (sync)
+             {
+                    return services.FirstOrDefault(s => s.ServiceId == id);
+             }
+        }
 
+        public Service Add(Service service)
+        {
+            if (service is null) throw new ArgumentNullException(nameof(service));
 
+            lock (sync)
+            {
+                var nextId = services.Any() ? services.Max(s => s.ServiceId) + 1 : 1;
+                service.ServiceId = nextId;
+                services.Add(service);
+                return service;
+            }
 
+        }
+
+    }
 }
 
 

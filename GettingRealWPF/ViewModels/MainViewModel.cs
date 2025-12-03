@@ -7,63 +7,100 @@ using GettingRealWPF.Models;
 using GettingRealWPF.Commands;
 
 namespace GettingRealWPF.ViewModels
+
+    //kun binding og commands
 {
-    public class MainViewModel : INotifyPropertyChanged //notifier UI at refresh
+    public class MainViewModel : INotifyPropertyChanged
     {
-        //Services er i en ObservableCollection<Service> i viewmodel
-        public ObservableCollection<Service> Services { get; } = new(); 
+        // Lister til ComboBoxe
+        public ObservableCollection<Service> Services { get; } = new();
         public ObservableCollection<Hairdresser> Hairdressers { get; } = new();
         public ObservableCollection<string> AvailableTimes { get; } = new();
 
-        private Service? _selectedService;
+        // Backing fields
+        private Service? selectedService;
         public Service? SelectedService
         {
-            get => _selectedService;
-            set { _selectedService = value; OnPropertyChanged(nameof(SelectedService)); RefreshAvailableTimes(); UpdateConfirmCanExecute(); }
+            get => selectedService;
+            set
+            {
+                selectedService = value;
+                OnPropertyChanged(nameof(SelectedService));
+                RefreshAvailableTimes();
+                UpdateConfirmCanExecute();
+            }
         }
 
-        private Hairdresser? _selectedHairdresser;
+        private Hairdresser? selectedHairdresser;
         public Hairdresser? SelectedHairdresser
         {
-            get => _selectedHairdresser;
-            set { _selectedHairdresser = value; OnPropertyChanged(nameof(SelectedHairdresser)); RefreshAvailableTimes(); UpdateConfirmCanExecute(); }
+            get => selectedHairdresser;
+            set
+            {
+                selectedHairdresser = value;
+                OnPropertyChanged(nameof(SelectedHairdresser));
+                RefreshAvailableTimes();
+                UpdateConfirmCanExecute();
+            }
         }
 
-        private DateTime? _selectedDate = DateTime.Today;
+        private DateTime? selectedDate = DateTime.Today;
         public DateTime? SelectedDate
         {
-            get => _selectedDate;
-            set { _selectedDate = value; OnPropertyChanged(nameof(SelectedDate)); RefreshAvailableTimes(); UpdateConfirmCanExecute(); }
+            get => selectedDate;
+            set
+            {
+                selectedDate = value;
+                OnPropertyChanged(nameof(SelectedDate));
+                RefreshAvailableTimes();
+                UpdateConfirmCanExecute();
+            }
         }
 
-        private string? _selectedTime;
+        private string? selectedTime;
         public string? SelectedTime
         {
-            get => _selectedTime;
-            set { _selectedTime = value; OnPropertyChanged(nameof(SelectedTime)); UpdateConfirmCanExecute(); }
+            get => selectedTime;
+            set
+            {
+                selectedTime = value;
+                OnPropertyChanged(nameof(SelectedTime));
+                UpdateConfirmCanExecute();
+            }
         }
 
-        private string? _navn;
+        private string? navn;
         public string? Navn
         {
-            get => _navn;
-            set { _navn = value; OnPropertyChanged(nameof(Navn)); UpdateConfirmCanExecute(); }
+            get => navn;
+            set
+            {
+                navn = value;
+                OnPropertyChanged(nameof(Navn));
+                UpdateConfirmCanExecute();
+            }
         }
 
-        private string? _telefon;
+        private string? telefon;
         public string? Telefon
         {
-            get => _telefon;
-            set { _telefon = value; OnPropertyChanged(nameof(Telefon)); UpdateConfirmCanExecute(); }
+            get => telefon;
+            set
+            {
+                telefon = value;
+                OnPropertyChanged(nameof(Telefon));
+                UpdateConfirmCanExecute();
+            }
         }
 
         public ICommand ConfirmCommand { get; }
 
-        public MainViewModel()
+              public MainViewModel()
         {
-            // Demo data
+            // Midlertidige data (flyttes til repositories senere)
             Services.Add(new Service(1, "Klip", 299m, TimeSpan.FromMinutes(30)));
             Services.Add(new Service(2, "Farve", 599m, TimeSpan.FromMinutes(60)));
+
             Hairdressers.Add(new Hairdresser(1, "Ammari"));
             Hairdressers.Add(new Hairdresser(2, "Sara"));
 
@@ -82,13 +119,13 @@ namespace GettingRealWPF.ViewModels
 
             var open = new TimeSpan(9, 0, 0);
             var close = new TimeSpan(17, 0, 0);
-            var step = TimeSpan.FromMinutes(15); // finer granularity
+            var step = TimeSpan.FromMinutes(15);
             var duration = SelectedService.Duration;
 
             for (var start = open; start + duration <= close; start += step)
             {
                 var startDt = SelectedDate.Value.Date + start;
-                // TODO: exclude existing bookings via repository later
+                // TODO: filtrer optagede tider fra repository
                 AvailableTimes.Add(startDt.ToString("HH:mm"));
             }
 
@@ -98,17 +135,16 @@ namespace GettingRealWPF.ViewModels
         private bool CanConfirm()
         {
             return SelectedService != null
-                   && SelectedHairdresser != null
-                   && SelectedDate != null
-                   && !string.IsNullOrWhiteSpace(SelectedTime)
-                   && !string.IsNullOrWhiteSpace(Navn)
-                   && !string.IsNullOrWhiteSpace(Telefon);
+                && SelectedHairdresser != null
+                && SelectedDate != null
+                && !string.IsNullOrWhiteSpace(SelectedTime)
+                && !string.IsNullOrWhiteSpace(Navn)
+                && !string.IsNullOrWhiteSpace(Telefon);
         }
 
         private void Confirm()
         {
-            // TODO: Persist booking. For now just placeholder logic.
-            // Keep UI popups out of ViewModel; raise event or use messaging if needed.
+            // TODO: Gem booking via repository
         }
 
         private void UpdateConfirmCanExecute()

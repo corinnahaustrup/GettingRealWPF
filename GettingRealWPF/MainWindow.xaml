@@ -68,6 +68,7 @@
         <Button Grid.Row="7" Grid.ColumnSpan="2" Width="120" Margin="0,12,0,0"
                 HorizontalAlignment="Right"
                 Content="Bekræft"
-                Command="{Binding ConfirmCommand}" Click="Button_Click"/>
+                
+                Command="{Binding ConfirmCommand}"/>
     </Grid>
 </Window>

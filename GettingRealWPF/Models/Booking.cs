@@ -9,21 +9,21 @@ namespace GettingRealWPF.Models
     public class Booking
     {
         //private felter
-        private int bookingId;
-        private DateTime dateTime;
-        private string status;
+        public int BookingId { get; set; }
+        public DateTime DateTime { get; set; }
+        public string Status { get; set; }
 
         //constructor 
         public Booking(int bookingId, DateTime dateTime, string status)
         {
-            this.bookingId = bookingId;
-            this.dateTime = dateTime;
-            this.status = status;
+            this.BookingId = bookingId;
+            this.DateTime = dateTime;
+            this.Status = status;
         }
 
         public string GetStatus()
         {
-            return status; 
+            return Status; 
         }
 
 
@@ -31,7 +31,7 @@ namespace GettingRealWPF.Models
         {
             //!stri... status er ikke null eller tom
             //tjekker om bookingtid er i fremtiden og status er udfyldt
-            return dateTime > DateTime.Now && !string.IsNullOrEmpty(status);
+            return DateTime > DateTime.Now && !string.IsNullOrEmpty(Status);
         }
 
 
@@ -39,7 +39,7 @@ namespace GettingRealWPF.Models
         {
             if (Validate())
             {
-                status = "Confirmed";
+                Status = "Confirmed";
                 return true;
             }
             return false;
@@ -47,9 +47,9 @@ namespace GettingRealWPF.Models
 
         public bool Cancel()
         {  //kan annuleres uanset status, bortset fra hvis den allerede er annulleret
-            if (status != "Cancelled")
+            if (Status != "Cancelled")
             {
-                status = "Cancelled";
+                Status = "Cancelled";
                 return true;
             }
             return false; //allerede annulleret

@@ -1,20 +1,22 @@
+using GettingRealWPF.Commands;
+using GettingRealWPF.Models;
+using GettingRealWPF.Repositories;
 using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
+using System.Windows;
 using System.Windows.Input;
-using GettingRealWPF.Commands;
-using GettingRealWPF.Models;
-using GettingRealWPF.Repositories;
 
 namespace GettingRealWPF.ViewModels
 
     //kun binding og commands
 {
-    public class MainViewModel : INotifyPropertyChanged 
-                       //når værdier ændres i viewmodel på properties får UI besked
+    public class MainViewModel : INotifyPropertyChanged
     {
-    private readonly ServiceRepository serviceRepo;
+        //når værdier ændres i viewmodel på properties får UI besked
+        private readonly ServiceRepository serviceRepo;
+        private BookingRepository bookingRepository;
 
         //Lister til ComboBoxe
         //ObservableCollection<> er en liste som automatisk giver UI besked når der tilføjes/fjernes items
@@ -22,6 +24,8 @@ namespace GettingRealWPF.ViewModels
         public ObservableCollection<Service> Services { get; } = new();
         public ObservableCollection<Hairdresser> Hairdressers { get; } = new();
         public ObservableCollection<string> AvailableTimes { get; } = new();
+        public ObservableCollection<Booking> Bookings { get; } = new();
+
 
         //Selected properties (binder til UI)
         private Service? selectedService;
@@ -96,7 +100,7 @@ namespace GettingRealWPF.ViewModels
                 OnPropertyChanged(nameof(Telefon));
                 UpdateConfirmCanExecute();
             }
-        }
+        } 
 
         // Command binding
         public ICommand ConfirmCommand { get; }
@@ -105,6 +109,7 @@ namespace GettingRealWPF.ViewModels
         {
             // Hent services fra repository
             serviceRepo = new ServiceRepository();
+            bookingRepository = new BookingRepository();
             foreach (var s in serviceRepo.GetAllServices())
                 Services.Add(s);
 
@@ -118,6 +123,9 @@ namespace GettingRealWPF.ViewModels
 
             // Command binding
             ConfirmCommand = new RelayCommand(_ => Confirm(), _ => CanConfirm());
+
+            foreach (var b in bookingRepository.GetBookings())
+                Bookings.Add(b);
 
             RefreshAvailableTimes();
         }

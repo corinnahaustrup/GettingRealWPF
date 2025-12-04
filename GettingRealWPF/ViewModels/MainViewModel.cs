@@ -107,21 +107,21 @@ namespace GettingRealWPF.ViewModels
 
         public MainViewModel()
         {
-            // Hent services fra repository
+            // Henter services fra repository
             serviceRepo = new ServiceRepository();
             bookingRepository = new BookingRepository();
             foreach (var s in serviceRepo.GetAllServices())
                 Services.Add(s);
 
-            // Dummy frisører
+         
             Hairdressers.Add(new Hairdresser(1, "Jafaar"));
             Hairdressers.Add(new Hairdresser(2, "Jacob"));
 
-            // Standardvalg
+           
             SelectedService = Services.FirstOrDefault();
             SelectedHairdresser = Hairdressers.FirstOrDefault();
 
-            // Command binding
+            //Command binding
             ConfirmCommand = new RelayCommand(_ => Confirm(), _ => CanConfirm());
 
             foreach (var b in bookingRepository.GetBookings())
@@ -161,8 +161,7 @@ namespace GettingRealWPF.ViewModels
 
         private void Confirm()
         {
-            // Her kan du vise en besked eller gemme booking
-            Console.WriteLine($"Booking bekræftet: {Navn} har valgt {SelectedService?.Name} hos {SelectedHairdresser?.Name} kl. {SelectedTime}");
+            
         }
 
         private void UpdateConfirmCanExecute()

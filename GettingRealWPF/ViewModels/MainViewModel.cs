@@ -11,7 +11,7 @@ using System.Windows.Input;
 namespace GettingRealWPF.ViewModels
 
     //kun binding og commands
-{
+{ 
     public class MainViewModel : INotifyPropertyChanged
     {
         //når værdier ændres i viewmodel på properties får UI besked
@@ -115,7 +115,7 @@ namespace GettingRealWPF.ViewModels
 
             // Dummy frisører
             Hairdressers.Add(new Hairdresser(1, "Jafaar"));
-            Hairdressers.Add(new Hairdresser(2, "Jakob"));
+            Hairdressers.Add(new Hairdresser(2, "Jacob"));
 
             // Standardvalg
             SelectedService = Services.FirstOrDefault();

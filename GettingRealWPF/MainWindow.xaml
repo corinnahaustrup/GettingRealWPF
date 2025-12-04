@@ -45,14 +45,11 @@
         <StackPanel Grid.Row="3" Grid.Column="1" Orientation="Horizontal" Margin="0,8,0,0">
             <DatePicker Width="140"
                         SelectedDate="{Binding SelectedDate, Mode=TwoWay}"/>
-            <ComboBox Width="80" Margin="8,0,0,0" x:Name="DatePicker"
+            <ComboBox Width="80" Margin="8,0,0,0" x:Name="AvailableTimesComboBox"
                       ItemsSource="{Binding AvailableTimes}"
-                      SelectedItem="{Binding SelectedTime, Mode=TwoWay}"/>
+                      SelectedItem="{Binding SelectedTime, Mode=TwoWay}" />
+
         </StackPanel>
-        <ListBox Grid.Row="4" Width="200" Margin="56,27,512,34"
-          ItemsSource="{Binding Bookings}" 
-          DisplayMemberPath="Status" Grid.ColumnSpan="2"
-                  />
 
 
         <!--4 Spacer (*) -->
